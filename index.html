@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>晴屿天气</title>
+    <meta
+      name="description"
+      content="一个排布舒适、信息清晰的中文天气预报网站，包含当前天气、小时预报、7 日趋势、空气质量与生活指数。"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="./assets/main.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>晴屿天气</span>
+      </div>
+
+      <label class="searchbox">
+        <input type="search" placeholder="搜索城市，例如 北京 / 上海 / 深圳" data-search-input />
+        <button type="button" data-search-button>搜索</button>
+      </label>
+
+      <div class="topbar-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle>夜色主题</button>
+        <button class="unit-toggle" type="button">°C</button>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="city-strip">
+        <button class="city-pill is-active" type="button" data-city="beijing">北京</button>
+        <button class="city-pill" type="button" data-city="shanghai">上海</button>
+        <button class="city-pill" type="button" data-city="guangzhou">广州</button>
+        <button class="city-pill" type="button" data-city="shenzhen">深圳</button>
+        <button class="city-pill" type="button" data-city="hangzhou">杭州</button>
+      </section>
+
+      <section class="hero-layout">
+        <article class="current-card panel panel-primary reveal">
+          <div class="current-head">
+            <div>
+              <p class="eyebrow" data-field="cityLabel">北京市，中国</p>
+              <h1 data-field="condition">多云转晴</h1>
+            </div>
+            <span class="time-badge" data-field="updateTime">更新于 08:20</span>
+          </div>
+
+          <div class="current-main">
+            <div class="weather-icon" data-field="icon">☁</div>
+            <div class="temp-wrap">
+              <strong data-field="temp">17°</strong>
+              <span data-field="feelsLike">体感 15°</span>
+            </div>
+            <div class="summary-copy">
+              <p data-field="summary">
+                上午云层偏多，午后转晴，空气干爽。今天适合出行和步行活动，夜里气温下降较快。
+              </p>
+              <div class="tag-row">
+                <span data-field="tagA">日照良好</span>
+                <span data-field="tagB">降水概率 10%</span>
+                <span data-field="tagC">晚间偏凉</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <article>
+              <span>风速</span>
+              <strong data-field="wind">12 公里/小时</strong>
+            </article>
+            <article>
+              <span>湿度</span>
+              <strong data-field="humidity">35%</strong>
+            </article>
+            <article>
+              <span>能见度</span>
+              <strong data-field="visibility">14 公里</strong>
+            </article>
+            <article>
+              <span>气压</span>
+              <strong data-field="pressure">1018 百帕</strong>
+            </article>
+          </div>
+        </article>
+
+        <article class="radar-card panel reveal">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">雷达概览</p>
+              <h2>周边云层与降水带</h2>
+            </div>
+            <a href="https://www.weather.com/" target="_blank" rel="noreferrer noopener">查看外部雷达</a>
+          </div>
+
+          <div class="radar-map">
+            <div class="radar-grid"></div>
+            <div class="radar-cloud cloud-a"></div>
+            <div class="radar-cloud cloud-b"></div>
+            <div class="radar-cloud cloud-c"></div>
+            <div class="radar-point"></div>
+            <div class="radar-city city-one">延庆</div>
+            <div class="radar-city city-two">承德</div>
+            <div class="radar-city city-three">天津</div>
+            <div class="radar-city city-four">北京</div>
+          </div>
+
+          <p class="radar-note" data-field="radarNote">未来 2 小时无明显降雨云团接近城区，北部山区风势稍强。</p>
+        </article>
+
+        <aside class="sidebar-stack">
+          <article class="side-card panel reveal">
+            <p class="eyebrow">空气质量</p>
+            <div class="side-value">
+              <strong data-field="aqiValue">47</strong>
+              <span data-field="aqiLabel">优</span>
+            </div>
+            <p class="side-copy" data-field="aqiText">空气质量舒适，适合晨跑、步行和开窗通风。</p>
+          </article>
+
+          <article class="side-card panel reveal">
+            <p class="eyebrow">日出日落</p>
+            <div class="sun-row">
+              <div>
+                <span>日出</span>
+                <strong data-field="sunrise">05:11</strong>
+              </div>
+              <div>
+                <span>日落</span>
+                <strong data-field="sunset">18:57</strong>
+              </div>
+            </div>
+            <p class="side-copy" data-field="sunText">白昼时长 13 小时 46 分钟，傍晚光线通透。</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="hourly-section panel reveal">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">逐小时预报</p>
+            <h2>今天接下来 12 小时</h2>
+          </div>
+          <div class="switch-row">
+            <button class="mini-chip is-active" type="button">概览</button>
+            <button class="mini-chip" type="button">降雨量</button>
+            <button class="mini-chip" type="button">风</button>
+          </div>
+        </div>
+        <div class="hourly-strip" data-hourly-list></div>
+      </section>
+
+      <section class="bottom-layout">
+        <article class="trend-section panel reveal">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">趋势图</p>
+              <h2 data-trend-title>未来 24 小时温度变化</h2>
+            </div>
+            <div class="switch-row">
+              <button class="mini-chip is-active" type="button" data-trend-mode="temp">温度</button>
+              <button class="mini-chip" type="button" data-trend-mode="feels">体感</button>
+            </div>
+          </div>
+
+          <svg class="trend-chart" viewBox="0 0 860 300" aria-label="24 小时温度变化图">
+            <g class="chart-grid">
+              <line x1="48" y1="34" x2="812" y2="34"></line>
+              <line x1="48" y1="96" x2="812" y2="96"></line>
+              <line x1="48" y1="158" x2="812" y2="158"></line>
+              <line x1="48" y1="220" x2="812" y2="220"></line>
+            </g>
+            <path class="chart-area" data-chart-area=""></path>
+            <path class="chart-line" data-chart-line=""></path>
+            <g class="chart-dots" data-chart-dots></g>
+          </svg>
+          <div class="trend-axis" data-trend-axis></div>
+        </article>
+
+        <aside class="right-column">
+          <article class="daily-section panel reveal">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">7 日预报</p>
+                <h2>一周天气趋势</h2>
+              </div>
+            </div>
+            <div class="daily-list" data-daily-list></div>
+          </article>
+
+          <article class="life-section panel reveal">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">生活指数</p>
+                <h2>今天适合做什么</h2>
+              </div>
+            </div>
+            <div class="life-grid" data-life-list></div>
+          </article>
+
+          <article class="links-section panel reveal">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">天气参考</p>
+                <h2>气象与空气质量资源</h2>
+              </div>
+            </div>
+            <div class="link-list">
+              <a href="https://www.nmc.cn/" target="_blank" rel="noreferrer noopener">中央气象台</a>
+              <a href="https://www.windy.com/" target="_blank" rel="noreferrer noopener">Windy 风场地图</a>
+              <a href="https://aqicn.org/" target="_blank" rel="noreferrer noopener">AQI 空气质量</a>
+              <a href="https://www.weather.com/" target="_blank" rel="noreferrer noopener">Weather.com</a>
+            </div>
+            <p class="source-note">
+              页面实时数据接入自 Open-Meteo；Weather.com 保留为参考入口。
+            </p>
+          </article>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
