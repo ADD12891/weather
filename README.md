@@ -1,7 +1,7 @@
 # 晴屿天气
 
 一个可直接部署的静态天气网站。
-
+https://add12891.github.io/weather/
 ## 文件结构
 
 - `index.html`：主页面
